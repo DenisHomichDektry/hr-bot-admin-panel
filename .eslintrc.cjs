@@ -3,11 +3,17 @@ module.exports = {
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
+    "plugin:react/recommended",
     'plugin:react-hooks/recommended',
-    "plugin:react/recommended"
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'eslint-config-prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
@@ -15,6 +21,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
   },
   parserOptions: {
     ecmaVersion: 'latest',
