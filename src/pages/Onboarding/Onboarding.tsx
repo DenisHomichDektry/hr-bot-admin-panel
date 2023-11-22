@@ -1,9 +1,18 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
-export const Onboarding = () => {
+const Onboarding = () => {
   return (
-    <Box>
-      <Typography>Onboarding page</Typography>
-    </Box>
+    <>
+      <Helmet>
+        <title> Onboarding | HR Bot </title>
+      </Helmet>
+      <Box>
+        <Typography>Onboarding page</Typography>
+      </Box>
+    </>
   );
 };
+
+export default Onboarding;

@@ -1,9 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 
-export const KnowledgeBase = () => {
+const KnowledgeBase = () => {
   return (
-    <Box>
-      <Typography>KnowledgeBase page</Typography>
-    </Box>
+    <>
+      <Helmet>
+        <title> Knowledge Base | HR Bot </title>
+      </Helmet>
+      <Box>
+        <Typography>KnowledgeBase page</Typography>
+      </Box>
+    </>
   );
 };
+
+export default KnowledgeBase;

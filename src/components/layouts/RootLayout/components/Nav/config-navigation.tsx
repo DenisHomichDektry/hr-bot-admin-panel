@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { SvgColor } from '~/components/atoms/SvgColor';
+import { Routes } from '~/constants/routes.ts';
 // ----------------------------------------------------------------------
 
 const icon = (name: string) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
@@ -12,33 +13,18 @@ export interface INavItem {
 }
 export const navConfig: INavItem[] = [
   {
-    title: 'dashboard',
-    path: '/',
+    title: 'Onboarding',
+    path: Routes.ONBOARDING,
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
-    path: '/user',
+    title: 'User management',
+    path: Routes.USER_MANAGEMENT,
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
-    path: '/products',
-    icon: icon('ic_cart'),
-  },
-  {
-    title: 'blog',
-    path: '/blog',
+    title: 'Knowledge base',
+    path: Routes.KNOWLEDGE_BASE,
     icon: icon('ic_blog'),
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
   },
 ];

@@ -1,9 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 
-export const UserManagement = () => {
+const UserManagement = () => {
   return (
-    <Box>
-      <Typography>User Management page</Typography>
-    </Box>
+    <>
+      <Helmet>
+        <title> User Management | HR Bot </title>
+      </Helmet>
+      <Box>
+        <Typography>User Management page</Typography>
+      </Box>
+    </>
   );
 };
+
+export default UserManagement;
