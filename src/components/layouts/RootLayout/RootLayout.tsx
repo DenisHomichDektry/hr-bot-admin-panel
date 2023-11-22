@@ -1,7 +1,9 @@
 import { FC, ReactNode, useState } from 'react';
 import { Box } from '@mui/material';
 
-import { Header } from '~/components/organisms/Header/Header.tsx';
+import { Header } from './components/Header';
+import { Nav } from './components/Nav';
+import { Main } from './components/Main';
 
 export const RootLayout: FC<{
   children?: ReactNode;
@@ -18,10 +20,9 @@ export const RootLayout: FC<{
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
         }}>
-        {/*<Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />*/}
+        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
 
-        {/*<Main>{children}</Main>*/}
-        <Box>{children}</Box>
+        <Main>{children}</Main>
       </Box>
     </>
   );
