@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
 
 const Onboarding = () => {
+  console.count('Onboarding');
   return (
     <>
       <Helmet>

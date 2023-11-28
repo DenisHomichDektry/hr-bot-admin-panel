@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { AppBar, Box, IconButton, Stack, Toolbar, useTheme } from '@mui/material';
 
 import { bgBlur } from '~/theme/css.ts';
-import { useResponsive } from '~/hooks/use-responsive.ts';
+import { useResponsive } from '~/hooks';
 import { Iconify } from '~/components/atoms/Iconify';
+import { HEADER, NAV } from '~/constants';
 
 import { Searchbar } from '../SearchBar';
 import { NotificationsPopover } from '../NotificationPopover';
-import { HEADER, NAV } from '~/constants';
 import { AccountPopover } from '../AccountPopover';
 import { LanguagePopover } from '../LanguagePopover';
 

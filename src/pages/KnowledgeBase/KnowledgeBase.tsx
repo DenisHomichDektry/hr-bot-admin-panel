@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 
 const KnowledgeBase = () => {
+  console.count('KnowledgeBase');
   return (
     <>
       <Helmet>

@@ -1,6 +1,10 @@
-export enum Routes {
-  ONBOARDING = '/',
+export enum ROUTES {
+  DASHBOARD = '/',
+  ONBOARDING = '/onboarding',
   USER_MANAGEMENT = '/user-management',
   KNOWLEDGE_BASE = '/knowledge-base',
-  NOT_FOUND = '/404',
+  EXPENSES = '/expenses',
+  NOT_FOUND = '/not-found',
+  LOGIN = '/login',
+  NO_ACCESS = '/no-access',
 }

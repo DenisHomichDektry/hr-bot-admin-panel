@@ -6,6 +6,8 @@ import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 
 import { account } from '~/_mock/account.ts';
+import { useAppDispatch } from '~/store';
+import { handleExpiredToken } from '~/store/common';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -26,6 +28,7 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export const AccountPopover: FC = () => {
+  const dispatch = useAppDispatch();
   const [open, setOpen] = useState<Element | null>(null);
 
   const handleOpen = (event: MouseEvent) => {
@@ -34,6 +37,7 @@ export const AccountPopover: FC = () => {
 
   const handleClose = () => {
     setOpen(null);
+    dispatch(handleExpiredToken()); // TODO: remove this line when the real API is ready
   };
 
   return (
