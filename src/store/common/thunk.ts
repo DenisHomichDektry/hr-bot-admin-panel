@@ -9,6 +9,10 @@ import { scheduleAlert } from '~/store/alert';
 import { initType } from './actionType.ts';
 
 export const init = createAsyncThunk(initType, async () => {
+  if (router.state.location.pathname === ROUTES.NO_ACCESS) {
+    return true;
+  }
+
   const token = getToken();
   const redirect = localStorage.getItem('redirect');
 
