@@ -54,6 +54,11 @@ const Login: FC = () => {
           <Stack direction="row" spacing={2}>
             <Button
               href={import.meta.env.VITE_API_URL + ENDPOINTS.LOGIN}
+              onClick={(e) => {
+                // fix to prevent some browser from opening the link in a new tab
+                e.preventDefault();
+                window.location.href = import.meta.env.VITE_API_URL + ENDPOINTS.LOGIN;
+              }}
               fullWidth
               size="large"
               color="inherit"
