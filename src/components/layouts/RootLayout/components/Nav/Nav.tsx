@@ -30,9 +30,15 @@ export const Nav: FC<INavProps> = ({ openNav, onCloseNav }) => {
       onCloseNav();
     }
 
+    let timeout: number;
     if (!isTokenExist()) {
-      dispatch(handleExpiredToken());
+      timeout = setTimeout(() => {
+        dispatch(handleExpiredToken());
+      });
     }
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [pathname]);
 
   const renderAccount = (
