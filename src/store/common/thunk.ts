@@ -10,9 +10,6 @@ import { initType } from './actionType.ts';
 
 export const init = createAsyncThunk(initType, async () => {
   if (publicRoutes.includes(router.state.location.pathname as ROUTES)) {
-    if (isTokenExist() && router.state.location.pathname === ROUTES.LOGIN) {
-      router.navigate(ROUTES.DASHBOARD);
-    }
     return true;
   }
 
@@ -30,6 +27,10 @@ export const init = createAsyncThunk(initType, async () => {
   if (redirect && token) {
     localStorage.removeItem('redirect');
     router.navigate(redirect);
+  }
+
+  if (token && router.state.location.pathname === ROUTES.LOGIN) {
+    router.navigate(ROUTES.DASHBOARD);
   }
 
   return true;

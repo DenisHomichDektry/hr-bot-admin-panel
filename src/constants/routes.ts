@@ -9,4 +9,4 @@ export enum ROUTES {
   NO_ACCESS = '/no-access',
 }
 
-export const publicRoutes = [ROUTES.LOGIN, ROUTES.NO_ACCESS, ROUTES.NOT_FOUND];
+export const publicRoutes = [ROUTES.NO_ACCESS, ROUTES.NOT_FOUND];

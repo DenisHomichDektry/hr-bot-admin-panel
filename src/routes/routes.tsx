@@ -5,6 +5,8 @@ import { RootLayout } from '~/components/layouts/RootLayout';
 import { Error } from '~/pages/Error';
 import { publicRoutes, ROUTES } from '~/constants';
 import { isTokenExist } from '~/utils';
+import { store } from '~/store';
+import { handleExpiredToken } from '~/store/common';
 
 const OnboardingPage = lazy(() => import('../pages/Onboarding/Onboarding'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFound'));
@@ -65,7 +67,11 @@ export const router = createBrowserRouter([
 ]);
 
 router.subscribe((route) => {
-  if (!isTokenExist() && !publicRoutes.includes(route.location.pathname as ROUTES)) {
-    router.navigate(ROUTES.LOGIN);
+  if (
+    !isTokenExist() &&
+    !publicRoutes.includes(route.location.pathname as ROUTES) &&
+    route.location.pathname !== ROUTES.LOGIN
+  ) {
+    store.dispatch(handleExpiredToken());
   }
 });

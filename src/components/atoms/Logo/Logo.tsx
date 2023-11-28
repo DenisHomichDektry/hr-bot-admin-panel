@@ -2,6 +2,7 @@ import { FC, forwardRef } from 'react';
 import { Box, Link, SxProps, Theme, useTheme } from '@mui/material';
 
 import { RouterLink } from '~/routes/components/RouterLink';
+import { isTokenExist } from '~/utils';
 
 // ----------------------------------------------------------------------
 interface ILogoProps {
@@ -79,7 +80,10 @@ export const Logo: FC<ILogoProps> = forwardRef(({ disabledLink = false, sx, ...o
   }
 
   return (
-    <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
+    <Link
+      component={RouterLink}
+      href="/"
+      sx={{ display: 'contents', pointerEvents: isTokenExist() ? undefined : 'none' }}>
       {logo}
     </Link>
   );

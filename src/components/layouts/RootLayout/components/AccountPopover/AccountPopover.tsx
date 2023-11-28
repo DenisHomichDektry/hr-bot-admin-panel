@@ -7,7 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { account } from '~/_mock/account.ts';
 import { useAppDispatch } from '~/store';
-import { handleExpiredToken } from '~/store/common';
+import { router } from '~/routes';
+import { ROUTES } from '~/constants';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -37,7 +38,10 @@ export const AccountPopover: FC = () => {
 
   const handleClose = () => {
     setOpen(null);
-    dispatch(handleExpiredToken()); // TODO: remove this line when the real API is ready
+    // TODO: remove this line when the real API is ready
+    localStorage.setItem('redirect', window.location.pathname);
+    localStorage.removeItem('token');
+    router.navigate(ROUTES.LOGIN);
   };
 
   return (
