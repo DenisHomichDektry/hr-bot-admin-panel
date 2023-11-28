@@ -8,9 +8,6 @@ import { usePathname } from '~/routes/hooks';
 import { RouterLink } from '~/routes/components/RouterLink';
 import { Logo } from '~/components/atoms/Logo';
 import { NAV } from '~/constants';
-import { isTokenExist } from '~/utils';
-import { useAppDispatch } from '~/store';
-import { handleExpiredToken } from '~/store/common';
 
 import { INavItem, navConfig } from './config-navigation';
 
@@ -20,7 +17,6 @@ interface INavProps {
   onCloseNav: () => void;
 }
 export const Nav: FC<INavProps> = ({ openNav, onCloseNav }) => {
-  const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const upLg = useResponsive({ query: 'up', start: 'lg' });
@@ -29,16 +25,6 @@ export const Nav: FC<INavProps> = ({ openNav, onCloseNav }) => {
     if (openNav) {
       onCloseNav();
     }
-
-    let timeout: number;
-    if (!isTokenExist()) {
-      timeout = setTimeout(() => {
-        dispatch(handleExpiredToken());
-      });
-    }
-    return () => {
-      clearTimeout(timeout);
-    };
   }, [pathname]);
 
   const renderAccount = (

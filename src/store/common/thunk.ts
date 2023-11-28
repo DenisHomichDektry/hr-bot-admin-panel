@@ -1,15 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { router } from '~/routes';
-import { MESSAGES, ROUTES } from '~/constants';
-import { getToken, isTokenExpired } from '~/utils/token.ts';
+import { MESSAGES, publicRoutes, ROUTES } from '~/constants';
+import { getToken, isTokenExist, isTokenExpired } from '~/utils/token.ts';
 import { AppThunk } from '~/store';
 import { scheduleAlert } from '~/store/alert';
 
 import { initType } from './actionType.ts';
 
 export const init = createAsyncThunk(initType, async () => {
-  if (router.state.location.pathname === ROUTES.NO_ACCESS) {
+  if (publicRoutes.includes(router.state.location.pathname as ROUTES)) {
+    if (isTokenExist() && router.state.location.pathname === ROUTES.LOGIN) {
+      router.navigate(ROUTES.DASHBOARD);
+    }
     return true;
   }
 

@@ -8,3 +8,5 @@ export enum ROUTES {
   LOGIN = '/login',
   NO_ACCESS = '/no-access',
 }
+
+export const publicRoutes = [ROUTES.LOGIN, ROUTES.NO_ACCESS, ROUTES.NOT_FOUND];

@@ -9,7 +9,7 @@ const Expenses = () => {
         <title> Expenses | HR Bot </title>
       </Helmet>
       <Box>
-        <Typography>Dashboard page</Typography>
+        <Typography>Expenses page</Typography>
       </Box>
     </>
   );

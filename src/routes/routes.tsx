@@ -3,7 +3,8 @@ import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 
 import { RootLayout } from '~/components/layouts/RootLayout';
 import { Error } from '~/pages/Error';
-import { ROUTES } from '~/constants';
+import { publicRoutes, ROUTES } from '~/constants';
+import { isTokenExist } from '~/utils';
 
 const OnboardingPage = lazy(() => import('../pages/Onboarding/Onboarding'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFound'));
@@ -14,23 +15,12 @@ const NoAccessPage = lazy(() => import('../pages/NoAccess/NoAccess'));
 const DashboardPage = lazy(() => import('../pages/Dashboard/Dashboard'));
 const ExpensesPage = lazy(() => import('../pages/Expenses/Expenses'));
 
-const Fallback: FC = (props) => {
-  const [display, setDisplay] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setDisplay(true), 30);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  return display ? <div>Loading...</div> : null;
-};
-
 export const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <RootLayout>
-        <Suspense fallback={<Fallback />}>
+        <Suspense>
           <Outlet />
         </Suspense>
       </RootLayout>
@@ -73,3 +63,9 @@ export const router = createBrowserRouter([
   },
   { path: '*', element: <Navigate to={ROUTES.NOT_FOUND} replace /> },
 ]);
+
+router.subscribe((route) => {
+  if (!isTokenExist() && !publicRoutes.includes(route.location.pathname as ROUTES)) {
+    router.navigate(ROUTES.LOGIN);
+  }
+});

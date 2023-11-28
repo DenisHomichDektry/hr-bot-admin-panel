@@ -11,12 +11,6 @@ import { router } from '~/routes';
 const Login: FC = () => {
   const theme = useTheme();
 
-  useEffect(() => {
-    if (isTokenExist()) {
-      router.navigate(ROUTES.ONBOARDING);
-    }
-  }, []);
-
   return (
     <Box
       sx={{
@@ -53,11 +47,8 @@ const Login: FC = () => {
 
           <Stack direction="row" spacing={2}>
             <Button
-              component="a"
-              onClick={(e) => {
-                // fix to prevent some browser from opening the link in a new tab
-                e.preventDefault();
-                window.location.href = import.meta.env.VITE_API_URL + ENDPOINTS.LOGIN;
+              onClick={() => {
+                location.replace(import.meta.env.VITE_API_URL + ENDPOINTS.LOGIN);
               }}
               fullWidth
               size="large"
