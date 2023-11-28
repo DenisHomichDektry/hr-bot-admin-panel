@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Box, SxProps, Theme } from '@mui/material';
 
-import { useResponsive } from '~/hooks/use-responsive';
+import { useResponsive } from '~/hooks';
 import { HEADER, NAV } from '~/constants';
 
 // ----------------------------------------------------------------------

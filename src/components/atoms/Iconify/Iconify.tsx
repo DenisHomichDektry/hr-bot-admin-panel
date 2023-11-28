@@ -1,11 +1,12 @@
-import { forwardRef, ForwardRefExoticComponent } from "react";
-import { Icon } from "@iconify/react";
-import Box from "@mui/material/Box";
+import { forwardRef, ForwardRefExoticComponent } from 'react';
+import { Icon, IconifyIcon } from '@iconify/react';
+import { Box, SxProps, Theme } from '@mui/material';
 
 interface IIconifyProps {
-  icon: any;
-  sx?: any;
-  width?: number;
+  icon: string;
+  sx?: SxProps<Theme>;
+  width?: string | number;
+  [x: string]: unknown;
 }
 export const Iconify: ForwardRefExoticComponent<IIconifyProps> = forwardRef(
   ({ icon, width = 20, sx, ...other }, ref) => (

@@ -1,13 +1,16 @@
 import { useEffect, FC } from 'react';
-import { ListItemButton, alpha, Box, Drawer, Typography, Button, Stack, Avatar } from '@mui/material';
+import { ListItemButton, alpha, Box, Drawer, Typography, Stack, Avatar } from '@mui/material';
 
-import { useResponsive } from '~/hooks/use-responsive';
+import { useResponsive } from '~/hooks';
 import { account } from '~/_mock/account';
 import { Scrollbar } from '~/components/atoms/Scrollbar';
 import { usePathname } from '~/routes/hooks';
 import { RouterLink } from '~/routes/components/RouterLink';
 import { Logo } from '~/components/atoms/Logo';
 import { NAV } from '~/constants';
+import { isTokenExist } from '~/utils';
+import { useAppDispatch } from '~/store';
+import { handleExpiredToken } from '~/store/common';
 
 import { INavItem, navConfig } from './config-navigation';
 
@@ -17,6 +20,7 @@ interface INavProps {
   onCloseNav: () => void;
 }
 export const Nav: FC<INavProps> = ({ openNav, onCloseNav }) => {
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const upLg = useResponsive({ query: 'up', start: 'lg' });
@@ -25,7 +29,10 @@ export const Nav: FC<INavProps> = ({ openNav, onCloseNav }) => {
     if (openNav) {
       onCloseNav();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    if (!isTokenExist()) {
+      dispatch(handleExpiredToken());
+    }
   }, [pathname]);
 
   const renderAccount = (
