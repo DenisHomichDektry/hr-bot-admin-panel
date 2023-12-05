@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ENDPOINTS } from '~/constants';
+
+import { ENDPOINTS, TAGS } from '~/constants';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -14,7 +15,7 @@ export const api = createApi({
     },
   }),
   refetchOnMountOrArgChange: true,
-  tagTypes: ['Messages'],
+  tagTypes: ['Messages', TAGS.CATEGORY, TAGS.ITEM],
   endpoints: (builder) => ({
     // TODO: remove this before production
     getTest: builder.query<{ id: number; message: string }, number>({

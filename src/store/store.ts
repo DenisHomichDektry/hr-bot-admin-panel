@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { logger } from 'redux-logger';
 
-import { api } from '~/store/api.ts';
+import { api } from '~/store/api';
 
 import { commonReducer } from './common';
 import { alertReducer } from './alert';
@@ -12,7 +12,7 @@ import { rtkQueryErrorLogger } from './middleware.ts';
 const middlewares = [api.middleware, rtkQueryErrorLogger];
 
 if (import.meta.env.MODE === 'development') {
-  middlewares.push(logger);
+  // middlewares.push(logger);
 }
 
 export const store = configureStore({

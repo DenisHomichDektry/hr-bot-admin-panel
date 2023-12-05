@@ -31,7 +31,8 @@ export const CustomSnackBar: FC = () => {
       <Alert
         severity="error"
         sx={{
-          backgroundColor: '#fff',
+          // TODO: move to overrides
+          backgroundColor: 'rgb(255, 233, 213)',
         }}
         action={
           <Button onClick={handleSnackbarClose as MouseEventHandler<unknown>}>

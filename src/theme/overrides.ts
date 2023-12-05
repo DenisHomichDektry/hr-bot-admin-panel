@@ -1,8 +1,8 @@
-import { alpha } from "@mui/material/styles";
-import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import { CSSObject, Theme } from "@mui/material";
-import { CardHeaderProps } from "@mui/material/CardHeader";
-import { Components } from "@mui/material/styles/components";
+import { alpha } from '@mui/material/styles';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { CSSObject, Theme } from '@mui/material';
+import { CardHeaderProps } from '@mui/material/CardHeader';
+import { Components } from '@mui/material/styles/components';
 
 // ----------------------------------------------------------------------
 
@@ -10,43 +10,43 @@ export function overrides(theme: Theme): Components {
   return {
     MuiCssBaseline: {
       styleOverrides: {
-        "*": {
-          boxSizing: "border-box",
+        '*': {
+          boxSizing: 'border-box',
         },
         html: {
           margin: 0,
           padding: 0,
-          width: "100%",
-          height: "100%",
-          WebkitOverflowScrolling: "touch",
+          width: '100%',
+          height: '100%',
+          WebkitOverflowScrolling: 'touch',
         },
         body: {
           margin: 0,
           padding: 0,
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         },
-        "#root": {
-          width: "100%",
-          height: "100%",
+        '#root': {
+          width: '100%',
+          height: '100%',
         },
         input: {
-          "&[type=number]": {
-            MozAppearance: "textfield",
-            "&::-webkit-outer-spin-button": {
+          '&[type=number]': {
+            MozAppearance: 'textfield',
+            '&::-webkit-outer-spin-button': {
               margin: 0,
-              WebkitAppearance: "none",
+              WebkitAppearance: 'none',
             },
-            "&::-webkit-inner-spin-button": {
+            '&::-webkit-inner-spin-button': {
               margin: 0,
-              WebkitAppearance: "none",
+              WebkitAppearance: 'none',
             },
           },
         },
         img: {
-          maxWidth: "100%",
-          display: "inline-block",
-          verticalAlign: "bottom",
+          maxWidth: '100%',
+          display: 'inline-block',
+          verticalAlign: 'bottom',
         },
       },
     },
@@ -56,7 +56,7 @@ export function overrides(theme: Theme): Components {
           backgroundColor: alpha(theme.palette.grey[900], 0.8),
         },
         invisible: {
-          background: "transparent",
+          background: 'transparent',
         },
       },
     },
@@ -65,7 +65,7 @@ export function overrides(theme: Theme): Components {
         containedInherit: {
           color: theme.palette.common.white,
           backgroundColor: theme.palette.grey[800],
-          "&:hover": {
+          '&:hover': {
             color: theme.palette.common.white,
             backgroundColor: theme.palette.grey[800],
           },
@@ -80,15 +80,15 @@ export function overrides(theme: Theme): Components {
         root: {
           boxShadow: theme.customShadows.card,
           borderRadius: Number(theme.shape.borderRadius) * 2,
-          position: "relative",
+          position: 'relative',
           zIndex: 0, // Fix Safari overflow: hidden with border radius
         } as CSSObject,
       },
     },
     MuiCardHeader: {
       defaultProps: {
-        titleTypographyProps: { variant: "h6" },
-        subheaderTypographyProps: { variant: "body2" },
+        titleTypographyProps: { variant: 'h6' },
+        subheaderTypographyProps: { variant: 'body2' },
       } as CardHeaderProps,
       styleOverrides: {
         root: {
@@ -142,6 +142,13 @@ export function overrides(theme: Theme): Components {
       styleOverrides: {
         root: {
           ...theme.typography.body2,
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          boxShadow: theme.customShadows.dialog,
         },
       },
     },

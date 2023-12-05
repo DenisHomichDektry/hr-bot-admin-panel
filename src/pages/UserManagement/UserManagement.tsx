@@ -3,7 +3,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { Helmet } from 'react-helmet-async';
 import { useFormik } from 'formik';
 
-import { useGetTestQuery, useUpdateTestMutation } from '~/store/api.ts';
+import { useGetTestQuery, useUpdateTestMutation } from '~/store/api';
 import { useIsFetching } from '~/hooks';
 
 const UserManagement = () => {

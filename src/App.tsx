@@ -8,10 +8,11 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { router } from '~/routes';
-import { init, resetReady, selectReady } from '~/store/common';
+import { handleExpiredToken, init, selectReady } from '~/store/common';
 import { useAppDispatch } from '~/store';
 import { CustomSnackBar } from '~/components/molecules/CustomSnackBar';
 import { FetchingProgress } from '~/components/atoms/FetchingProgress';
+import { isTokenExist } from '~/utils';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,8 +25,7 @@ function App() {
     // when the user switches back to the tab
     const eventListener = () => {
       if (document.visibilityState === 'visible') {
-        dispatch(resetReady());
-        dispatch(init());
+        if (!isTokenExist()) dispatch(handleExpiredToken());
       }
     };
 

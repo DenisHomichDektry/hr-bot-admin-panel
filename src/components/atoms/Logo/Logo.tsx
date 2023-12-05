@@ -80,10 +80,7 @@ export const Logo: FC<ILogoProps> = forwardRef(({ disabledLink = false, sx, ...o
   }
 
   return (
-    <Link
-      component={RouterLink}
-      href="/"
-      sx={{ display: 'contents', pointerEvents: isTokenExist() ? undefined : 'none' }}>
+    <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
       {logo}
     </Link>
   );

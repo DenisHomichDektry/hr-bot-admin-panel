@@ -21,6 +21,7 @@ const Login: FC = () => {
         height: 1,
       }}>
       <Logo
+        disabledLink={!isTokenExist()}
         sx={{
           position: 'fixed',
           top: { xs: 16, md: 24 },
