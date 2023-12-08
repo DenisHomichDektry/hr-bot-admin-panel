@@ -19,7 +19,9 @@ export const ItemCard: FC<IItemCardProps> = memo(({ title, link, onEdit, onDelet
             justifyContent: 'space-between',
           }}>
           <Stack p={2} pb={0} spacing={2}>
-            <Typography fontWeight={700}>{title}</Typography>
+            <Typography fontWeight={700} noWrap>
+              {title}
+            </Typography>
 
             <Link
               color="inherit"

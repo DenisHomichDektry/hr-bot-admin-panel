@@ -18,13 +18,13 @@ export const userApi = api.injectEndpoints({
     }),
     deleteUser: build.mutation<void, string>({
       query: (id) => ({
-        url: `${ENDPOINTS.USER}/${id}`,
+        url: ENDPOINTS.USER_ID.replace(':id', id),
         method: 'DELETE',
       }),
       invalidatesTags: [{ type: TAGS.USER, id: 'LIST' }],
     }),
     userRoles: build.query<IRole[], void>({
-      query: () => `${ENDPOINTS.USER}/role`,
+      query: () => ENDPOINTS.USER_ROLE,
       providesTags: (result) =>
         result ? result.map(({ id }) => ({ type: TAGS.USER_ROLE, id })) : [{ type: TAGS.USER_ROLE, id: 'LIST' }],
     }),

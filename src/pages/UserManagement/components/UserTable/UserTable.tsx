@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FC, useEffect, useState, MouseEvent } from 'react';
-import { Card, Table, TableBody, TableContainer, TablePagination } from '@mui/material';
+import { Card, Stack, Table, TableBody, TableContainer, TablePagination, Typography } from '@mui/material';
 
 import {
   IUpdateUser,
@@ -13,7 +13,7 @@ import { useIsFetching } from '~/hooks';
 import { Scrollbar } from '~/components/atoms/Scrollbar';
 import { DeleteDialog } from '~/components/organisms/DeleteDialog';
 
-import { UserTableHead, TableEmptyRows, UserTableRow, TableNoData, EditDialog } from '../index.ts';
+import { UserTableHead, TableEmptyRows, UserTableRow, TableNoData, EditDialog, ErrorMessage } from '../index.ts';
 import { emptyRows } from '../../utils.ts';
 import { IHeadLabel } from '../../types.ts';
 
@@ -31,9 +31,14 @@ export const UserTable: FC = () => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
-  const { data: usersData, isFetching: isFetchingUsers } = useUsersQuery({ page, limit: rowsPerPage });
+  const {
+    data: usersData,
+    isFetching: isFetchingUsers,
+    isError: isUsersError,
+    error: usersError,
+  } = useUsersQuery({ page, limit: rowsPerPage });
   const [users, count] = usersData || [];
-  const { data: roles, isFetching: isFetchingRoles } = useUserRolesQuery();
+  const { data: roles, isFetching: isFetchingRoles, isError: isRolesError, error: rolesError } = useUserRolesQuery();
   useIsFetching(isFetchingUsers, isFetchingRoles);
 
   const [deleteUser, { isLoading: isDeletingUser, isSuccess: isDeleteSuccess, isError: isDeleteError }] =
@@ -67,6 +72,10 @@ export const UserTable: FC = () => {
   const handleEdit = (user: IUpdateUser) => {
     updateUser(user);
   };
+
+  if (isUsersError || isRolesError) {
+    return <ErrorMessage errors={[usersError, rolesError]} />;
+  }
 
   return users ? (
     <Card>

@@ -19,7 +19,7 @@ export const Main: FC<IMainProps> = ({ children, sx, ...other }) => {
       component="main"
       sx={{
         flexGrow: 1,
-        minHeight: 1,
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         py: `${HEADER.H_MOBILE + SPACING}px`,

@@ -72,7 +72,7 @@ export const AccountPopover: FC = () => {
       <Popover
         open={!!open}
         anchorEl={open}
-        onClose={handleClose}
+        onClose={() => setOpen(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{

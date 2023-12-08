@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import { useEffect } from 'react';
+
+import { Header, OnboardingList } from '~/pages/Onboarding/components';
 
 const Onboarding = () => {
   console.count('Onboarding');
@@ -9,9 +10,10 @@ const Onboarding = () => {
       <Helmet>
         <title> Onboarding | HR Bot </title>
       </Helmet>
-      <Box>
-        <Typography>Onboarding page</Typography>
-      </Box>
+      <Container>
+        <Header />
+        <OnboardingList />
+      </Container>
     </>
   );
 };

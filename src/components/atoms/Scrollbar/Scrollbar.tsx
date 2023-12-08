@@ -8,6 +8,7 @@ import { StyledScrollbar, StyledRootScrollbar } from './styles';
 
 interface IScrollbarProps {
   children: React.ReactNode;
+  autoHide?: boolean;
   sx?: object;
 }
 

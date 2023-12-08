@@ -10,6 +10,8 @@ export enum ENDPOINTS {
   USER = 'user',
   USER_ID = 'user/:id',
   USER_ROLE = 'user/role',
+  ONBOARDING = 'onboarding',
+  ONBOARDING_ID = 'onboarding/:id',
 }
 
 export enum TAGS {
@@ -17,4 +19,5 @@ export enum TAGS {
   ITEM = 'Item',
   USER = 'User',
   USER_ROLE = 'UserRole',
+  ONBOARDING = 'Onboarding',
 }

@@ -5,3 +5,4 @@ export * from './TableEmptyRows';
 export * from './UserTableRow';
 export * from './TableNoData';
 export * from './EditDialog';
+export * from './ErrorMessage';

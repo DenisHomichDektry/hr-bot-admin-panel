@@ -40,3 +40,18 @@ export interface IUpdateUser {
   roleId?: string;
   email?: string;
 }
+
+export interface IOnboardingStep {
+  id: string;
+  title: string;
+  description: string;
+  link: string;
+  order: number;
+  notificationIntervals: number[];
+  createdAt: string;
+}
+
+export interface IOnboardingStepUpsert extends Partial<IOnboardingStep> {
+  id?: string;
+  order: number;
+}

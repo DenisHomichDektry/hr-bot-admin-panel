@@ -89,11 +89,13 @@ export const CategoryForm: FC<ICategoryFormProps> = (props) => {
       sx={{
         width: smUp ? '450px' : '100%',
         padding: '10px 0',
+        flex: 1,
+        height: '100%',
       }}
       gap={4}
       justifyItems="space-between"
       onSubmit={formik.handleSubmit}>
-      <Scrollbar sx={{ maxHeight: '65vh' }}>
+      <Scrollbar sx={{ maxHeight: smUp ? '65vh' : '100%' }}>
         <Stack gap={4}>
           {formik.values.fields.map((category, index) => (
             <Row

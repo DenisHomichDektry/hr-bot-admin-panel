@@ -2,6 +2,7 @@ import { FC, ReactNode, useState } from 'react';
 import { Box } from '@mui/material';
 
 import { PageLoading } from '~/components/organisms/PageLoading';
+import { Scrollbar } from '~/components/atoms/Scrollbar';
 
 import { Header } from './components/Header';
 import { Nav } from './components/Nav';
@@ -16,7 +17,7 @@ export const RootLayout: FC<{
   const [openNav, setOpenNav] = useState(false);
 
   return (
-    <>
+    <Scrollbar>
       <Header onOpenNav={() => setOpenNav(true)} />
 
       <Box
@@ -29,9 +30,9 @@ export const RootLayout: FC<{
 
         <Main>
           {displayChildren ? null : <PageLoading />}
-          {displayChildren ? children : <Box sx={{ position: 'absolute', opacity: 0 }}>{children}</Box>}
+          <Box sx={displayChildren ? {} : { display: 'none' }}>{children}</Box>
         </Main>
       </Box>
-    </>
+    </Scrollbar>
   );
 };
