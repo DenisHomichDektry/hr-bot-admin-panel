@@ -101,12 +101,7 @@ export const UserTable: FC = () => {
                   }}
                 />
               ))}
-              <TableEmptyRows
-                height={73}
-                emptyRows={
-                  isFetchingUsers ? (users ? rowsPerPage - users.length : 0) : emptyRows(page, rowsPerPage, count || 0)
-                }
-              />
+              <TableEmptyRows height={73} emptyRows={Math.max(0, rowsPerPage - (users.length || 0))} />
               {users.length === 0 && <TableNoData query={''} />}
             </TableBody>
           </Table>
