@@ -42,11 +42,6 @@ export const ItemGrid: FC<IITemGridProps> = ({ items, categories, currentCategor
     }, 150);
   };
 
-  const handleOpenDeleteDialog = (item: IItem) => {
-    setOpenDeleteDialog(true);
-    setItem(item);
-  };
-
   const handleDelete = () => {
     if (item) {
       deleteItem(item.id);
@@ -71,8 +66,10 @@ export const ItemGrid: FC<IITemGridProps> = ({ items, categories, currentCategor
                   key={id}
                   title={title}
                   link={link}
-                  onEdit={() => handleItemEdit(item)}
-                  onDelete={() => handleOpenDeleteDialog(item)}
+                  id={id}
+                  setItem={setItem}
+                  openDeleteDialog={setOpenDeleteDialog}
+                  openEditDialog={setOpenEditDialog}
                 />
               );
             })

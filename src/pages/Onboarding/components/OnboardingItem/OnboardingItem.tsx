@@ -95,7 +95,6 @@ export const OnboardingItem: FC<OnboardingItemProps> = memo((props) => {
               <Iconify icon="eva:more-vertical-fill" />
             </IconButton>
           </Stack>
-
           <Popover
             open={!!open}
             anchorEl={open}
