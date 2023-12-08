@@ -9,16 +9,17 @@ import {
   useOnboardingStepQuery,
   useUpsertOnboardingStepMutation,
 } from '~/store/api';
-import { useIsFetching } from '~/hooks';
+import { useError, useIsFetching } from '~/hooks';
 
 import { OnboardingItem, CreateOrEditStepDialog } from '../';
 import { DeleteDialog } from '~/components/organisms/DeleteDialog';
 
 export const OnboardingList: FC = () => {
-  const { data, isFetching } = useOnboardingStepQuery();
-  const [upsertOnboardingStep, { isLoading }] = useUpsertOnboardingStepMutation();
-  const [deleteOnboardingStep, { isLoading: isDeleteLoading }] = useDeleteOnboardingStepMutation();
+  const { data, isFetching, error: onboardingError } = useOnboardingStepQuery();
+  const [upsertOnboardingStep, { isLoading, error: upsertError }] = useUpsertOnboardingStepMutation();
+  const [deleteOnboardingStep, { isLoading: isDeleteLoading, error: deleteError }] = useDeleteOnboardingStepMutation();
   useIsFetching(isFetching, isLoading);
+  useError(onboardingError, upsertError, deleteError);
 
   const [items, setItems] = useState<IOnboardingStep[]>([]);
   const [step, setStep] = useState<IOnboardingStepUpsert | null>(null);

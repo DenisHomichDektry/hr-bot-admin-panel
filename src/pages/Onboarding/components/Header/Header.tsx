@@ -3,12 +3,14 @@ import { Button, Stack, Typography } from '@mui/material';
 
 import { Iconify } from '~/components/atoms/Iconify';
 import { IOnboardingStepUpsert, useOnboardingStepQuery, useUpsertOnboardingStepMutation } from '~/store/api';
+import { useError } from '~/hooks';
 
 import { CreateOrEditStepDialog } from '../';
 
 export const Header: FC = () => {
-  const { data, isLoading: isStepsLoading, isFetching } = useOnboardingStepQuery();
-  const [upsertOnboardingStep, { isLoading }] = useUpsertOnboardingStepMutation();
+  const { data, isLoading: isStepsLoading, isFetching, error: onboardingError } = useOnboardingStepQuery();
+  const [upsertOnboardingStep, { isLoading, error: upsertError }] = useUpsertOnboardingStepMutation();
+  useError(onboardingError, upsertError);
 
   const [open, setOpen] = useState(false);
 

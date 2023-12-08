@@ -9,12 +9,11 @@ import {
   useUserRolesQuery,
   useUsersQuery,
 } from '~/store/api';
-import { useIsFetching } from '~/hooks';
+import { useIsFetching, useError } from '~/hooks';
 import { Scrollbar } from '~/components/atoms/Scrollbar';
 import { DeleteDialog } from '~/components/organisms/DeleteDialog';
 
 import { UserTableHead, TableEmptyRows, UserTableRow, TableNoData, EditDialog, ErrorMessage } from '../index.ts';
-import { emptyRows } from '../../utils.ts';
 import { IHeadLabel } from '../../types.ts';
 
 const headLabel: IHeadLabel[] = [
@@ -26,7 +25,7 @@ const headLabel: IHeadLabel[] = [
 
 export const UserTable: FC = () => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
@@ -41,10 +40,16 @@ export const UserTable: FC = () => {
   const { data: roles, isFetching: isFetchingRoles, isError: isRolesError, error: rolesError } = useUserRolesQuery();
   useIsFetching(isFetchingUsers, isFetchingRoles);
 
-  const [deleteUser, { isLoading: isDeletingUser, isSuccess: isDeleteSuccess, isError: isDeleteError }] =
-    useDeleteUserMutation();
-  const [updateUser, { isLoading: isUpdatingUser, isSuccess: isUpdateSuccess, isError: isUpdateError }] =
-    useUpdateUserMutation();
+  const [
+    deleteUser,
+    { isLoading: isDeletingUser, isSuccess: isDeleteSuccess, isError: isDeleteError, error: deleteUserError },
+  ] = useDeleteUserMutation();
+  const [
+    updateUser,
+    { isLoading: isUpdatingUser, isSuccess: isUpdateSuccess, isError: isUpdateError, error: updateUserError },
+  ] = useUpdateUserMutation();
+
+  useError(usersError, rolesError, deleteUserError, updateUserError);
 
   useEffect(() => {
     if (isDeleteSuccess || isDeleteError || isUpdateSuccess || isUpdateError) {

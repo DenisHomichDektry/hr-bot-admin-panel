@@ -6,6 +6,7 @@ import { DeleteDialog } from '~/components/organisms/DeleteDialog';
 
 import { TItemEdit } from '../../types.ts';
 import { CreateOrEditDialog, ItemCard } from '../index.ts';
+import { useError } from '~/hooks';
 
 interface IITemGridProps {
   items?: IItem[];
@@ -18,9 +19,13 @@ export const ItemGrid: FC<IITemGridProps> = ({ items, categories, currentCategor
   const [openDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false);
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
 
-  const [deleteItem, { isLoading: isDeleting, isError: isDeleteError, isSuccess: isDeleteSuccess }] =
-    useDeleteItemMutation();
-  const [editItem, { isLoading: isEditing, isError: isEditError, isSuccess: isEditSuccess }] = useEditItemMutation();
+  const [
+    deleteItem,
+    { isLoading: isDeleting, isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError },
+  ] = useDeleteItemMutation();
+  const [editItem, { isLoading: isEditing, isError: isEditError, isSuccess: isEditSuccess, error: editError }] =
+    useEditItemMutation();
+  useError(deleteError, editError);
 
   useEffect(() => {
     if (isDeleteError || isDeleteSuccess || isEditError || isEditSuccess) {

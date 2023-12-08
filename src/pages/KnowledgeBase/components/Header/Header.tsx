@@ -3,7 +3,7 @@ import { Button, Stack, Typography } from '@mui/material';
 
 import { Iconify } from '~/components/atoms/Iconify';
 import { CustomSelect } from '~/components/molecules/CustomSelect';
-import { useResponsive } from '~/hooks';
+import { useError, useResponsive } from '~/hooks';
 import {
   ICategory,
   knowledgeBaseApi,
@@ -12,10 +12,10 @@ import {
   useUpsertCategoryMutation,
 } from '~/store/api';
 import { useAppDispatch } from '~/store';
+import { TAGS } from '~/constants';
 
 import { CategoryDialog, CreateOrEditDialog } from '../index.ts';
 import { TItemEdit } from '../../types.ts';
-import { TAGS } from '~/constants';
 
 interface IHeaderProps {
   categories?: ICategory[];
@@ -30,16 +30,29 @@ export const Header: FC<IHeaderProps> = (props) => {
 
   const smUp = useResponsive({ query: 'up', start: 'sm' });
 
-  const [createItem, { isLoading: isCreatingItem, isError: isCreateItemError, isSuccess: isCreateItemSuccess }] =
-    useCreateItemMutation();
+  const [
+    createItem,
+    { isLoading: isCreatingItem, isError: isCreateItemError, isSuccess: isCreateItemSuccess, error: createItemError },
+  ] = useCreateItemMutation();
   const [
     upsertCategory,
-    { isLoading: isUpsertCategoryLoading, isError: isUpsertCategoryError, isSuccess: isUpsertCategorySuccess },
+    {
+      isLoading: isUpsertCategoryLoading,
+      isError: isUpsertCategoryError,
+      isSuccess: isUpsertCategorySuccess,
+      error: upsertCategoryError,
+    },
   ] = useUpsertCategoryMutation();
   const [
     deleteCategory,
-    { isLoading: isDeletingCategory, isError: isDeleteCategoryError, isSuccess: isDeleteCategorySuccess },
+    {
+      isLoading: isDeletingCategory,
+      isError: isDeleteCategoryError,
+      isSuccess: isDeleteCategorySuccess,
+      error: deleteCategoryError,
+    },
   ] = useDeleteCategoryMutation();
+  useError(createItemError, upsertCategoryError, deleteCategoryError);
 
   const [openCreateItemDialog, setOpenCreateItemDialog] = useState<boolean>(false);
   const [openCategoryDialog, setOpenCategoryDialog] = useState<boolean>(false);

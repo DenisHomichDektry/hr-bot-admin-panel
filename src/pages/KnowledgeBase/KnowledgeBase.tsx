@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Container, Stack, Typography } from '@mui/material';
 
 import { useCategoriesQuery, useItemsQuery } from '~/store/api';
-import { useIsFetching } from '~/hooks';
+import { useError, useIsFetching } from '~/hooks';
 
 import { Header, ItemGrid } from './components';
 
@@ -12,11 +12,21 @@ const KnowledgeBase = () => {
 
   const [currentCategory, setCurrentCategory] = useState('');
 
-  const { data: categories, isFetching: isFetchingCategories, isLoading: isLoadingCategories } = useCategoriesQuery();
-  const { currentData: items, isFetching: isFetchingItems } = useItemsQuery(currentCategory, {
+  const {
+    data: categories,
+    isFetching: isFetchingCategories,
+    isLoading: isLoadingCategories,
+    error: categoriesError,
+  } = useCategoriesQuery();
+  const {
+    currentData: items,
+    isFetching: isFetchingItems,
+    error: itemsError,
+  } = useItemsQuery(currentCategory, {
     skip: !currentCategory,
   });
   useIsFetching(isFetchingCategories, isFetchingItems);
+  useError(categoriesError, itemsError);
 
   // select first category as default
   useEffect(() => {
