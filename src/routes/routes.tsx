@@ -1,12 +1,12 @@
-import { FC, lazy, Suspense, useEffect, useState } from 'react';
+import { FC, lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 
 import { RootLayout } from '~/components/layouts/RootLayout';
 import { Error } from '~/pages/Error';
 import { publicRoutes, ROUTES } from '~/constants';
 import { isTokenExist } from '~/utils';
-import { store } from '~/store';
-import { handleExpiredToken } from '~/store/common';
+import { store, useAppDispatch } from '~/store';
+import { handleExpiredToken, updateIsPageLoading } from '~/store/common';
 
 const OnboardingPage = lazy(() => import('../pages/Onboarding/Onboarding'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFound'));
@@ -17,12 +17,24 @@ const NoAccessPage = lazy(() => import('../pages/NoAccess/NoAccess'));
 const DashboardPage = lazy(() => import('../pages/Dashboard/Dashboard'));
 const ExpensesPage = lazy(() => import('../pages/Expenses/Expenses'));
 
+export const Fallback = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(updateIsPageLoading(true));
+    return () => {
+      dispatch(updateIsPageLoading(false));
+    };
+  }, []);
+
+  return null;
+};
+
 export const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <RootLayout>
-        <Suspense>
+        <Suspense fallback={<Fallback />}>
           <Outlet />
         </Suspense>
       </RootLayout>

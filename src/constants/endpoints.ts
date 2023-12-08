@@ -7,9 +7,14 @@ export enum ENDPOINTS {
   KNOWLEDGE_BASE_ITEM = 'knowledge-base/item',
   KNOWLEDGE_BASE_CATEGORY_ID = 'knowledge-base/category/:id',
   KNOWLEDGE_BASE_ITEM_ID = 'knowledge-base/item/:id',
+  USER = 'user',
+  USER_ID = 'user/:id',
+  USER_ROLE = 'user/role',
 }
 
 export enum TAGS {
   CATEGORY = 'Category',
   ITEM = 'Item',
+  USER = 'User',
+  USER_ROLE = 'UserRole',
 }

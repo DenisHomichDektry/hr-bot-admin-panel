@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-import { SvgColor } from '~/components/atoms/SvgColor';
 import { ROUTES } from '~/constants/routes.ts';
+import { Iconify } from '~/components/atoms/Iconify';
 // ----------------------------------------------------------------------
 
-const icon = (name: string) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
+const getIcon = (icon: string) => <Iconify width={28} icon={icon} />;
 
 export interface INavItem {
   title: string;
@@ -15,26 +15,26 @@ export const navConfig: INavItem[] = [
   {
     title: 'Dashboard',
     path: ROUTES.DASHBOARD,
-    icon: icon('ic_analytics'),
+    icon: getIcon('ic:round-dashboard'),
   },
   {
     title: 'Onboarding',
     path: ROUTES.ONBOARDING,
-    icon: icon('ic_analytics'),
+    icon: getIcon('streamline:class-lesson-solid'),
   },
   {
     title: 'User management',
     path: ROUTES.USER_MANAGEMENT,
-    icon: icon('ic_user'),
+    icon: getIcon('ph:users-three-fill'),
   },
   {
     title: 'Knowledge base',
     path: ROUTES.KNOWLEDGE_BASE,
-    icon: icon('ic_blog'),
+    icon: getIcon('wpf:books'),
   },
   {
     title: 'Expenses',
     path: ROUTES.EXPENSES,
-    icon: icon('ic_user'),
+    icon: getIcon('mdi:papers'),
   },
 ];

@@ -38,7 +38,9 @@ export const init = createAsyncThunk(initType, async () => {
 
 export const handleExpiredToken = (): AppThunk => (dispatch, getState) => {
   dispatch(scheduleAlert(MESSAGES.SESSION_EXPIRED));
-  localStorage.setItem('redirect', window.location.pathname);
-  localStorage.removeItem('token');
+  if (!localStorage.getItem('redirect')) {
+    localStorage.setItem('redirect', window.location.pathname);
+    localStorage.removeItem('token');
+  }
   router.navigate(ROUTES.LOGIN);
 };

@@ -15,7 +15,7 @@ export const api = createApi({
     },
   }),
   refetchOnMountOrArgChange: true,
-  tagTypes: ['Messages', TAGS.CATEGORY, TAGS.ITEM],
+  tagTypes: ['Messages', TAGS.CATEGORY, TAGS.ITEM, TAGS.USER, TAGS.USER_ROLE],
   endpoints: (builder) => ({
     // TODO: remove this before production
     getTest: builder.query<{ id: number; message: string }, number>({
