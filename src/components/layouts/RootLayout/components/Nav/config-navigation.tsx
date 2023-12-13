@@ -23,6 +23,11 @@ export const navConfig: INavItem[] = [
     icon: getIcon('streamline:class-lesson-solid'),
   },
   {
+    title: 'Feedback',
+    path: ROUTES.FEEDBACK,
+    icon: getIcon('ic:round-feedback'),
+  },
+  {
     title: 'User management',
     path: ROUTES.USER_MANAGEMENT,
     icon: getIcon('ph:users-three-fill'),

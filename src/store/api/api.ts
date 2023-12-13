@@ -17,7 +17,7 @@ export const api = createApi({
   refetchOnMountOrArgChange: true,
   refetchOnReconnect: true,
   refetchOnFocus: true,
-  tagTypes: ['Messages', TAGS.CATEGORY, TAGS.ITEM, TAGS.USER, TAGS.USER_ROLE, TAGS.ONBOARDING],
+  tagTypes: ['Messages', TAGS.CATEGORY, TAGS.ITEM, TAGS.USER, TAGS.USER_ROLE, TAGS.ONBOARDING, TAGS.FEEDBACK],
   endpoints: (builder) => ({
     // TODO: remove this before production
     getTest: builder.query<{ id: number; message: string }, number>({

@@ -16,6 +16,7 @@ const LoginPage = lazy(() => import('../pages/Login/Login'));
 const NoAccessPage = lazy(() => import('../pages/NoAccess/NoAccess'));
 const DashboardPage = lazy(() => import('../pages/Dashboard/Dashboard'));
 const ExpensesPage = lazy(() => import('../pages/Expenses/Expenses'));
+const FeedbackPage = lazy(() => import('../pages/Feedback/Feedback'));
 
 export const Fallback = () => {
   const dispatch = useAppDispatch();
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
     children: [
       { element: <DashboardPage />, index: true, errorElement: <Error /> },
       { path: ROUTES.ONBOARDING, element: <OnboardingPage />, errorElement: <Error /> },
+      { path: ROUTES.FEEDBACK, element: <FeedbackPage />, errorElement: <Error /> },
       { path: ROUTES.KNOWLEDGE_BASE, element: <KnowledgeBasePage />, errorElement: <Error /> },
       { path: ROUTES.USER_MANAGEMENT, element: <UserManagementPage />, errorElement: <Error /> },
       { path: ROUTES.EXPENSES, element: <ExpensesPage />, errorElement: <Error /> },

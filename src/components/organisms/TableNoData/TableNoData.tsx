@@ -2,11 +2,7 @@ import { FC } from 'react';
 
 import { Paper, TableCell, TableRow, Typography } from '@mui/material';
 
-interface ITableNoDataProps {
-  query: string;
-}
-
-export const TableNoData: FC<ITableNoDataProps> = ({ query }) => {
+export const TableNoData: FC = () => {
   return (
     <TableRow>
       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>

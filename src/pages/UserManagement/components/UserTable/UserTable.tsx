@@ -12,8 +12,10 @@ import {
 import { useIsFetching, useError } from '~/hooks';
 import { Scrollbar } from '~/components/atoms/Scrollbar';
 import { DeleteDialog } from '~/components/organisms/DeleteDialog';
+import { TableEmptyRows } from '~/components/organisms/TableEmptyRows';
+import { TableNoData } from '~/components/organisms/TableNoData';
 
-import { UserTableHead, TableEmptyRows, UserTableRow, TableNoData, EditDialog, ErrorMessage } from '../index.ts';
+import { UserTableHead, UserTableRow, EditDialog, ErrorMessage } from '../index.ts';
 import { IHeadLabel } from '../../types.ts';
 
 const headLabel: IHeadLabel[] = [
@@ -106,8 +108,8 @@ export const UserTable: FC = () => {
                   }}
                 />
               ))}
-              <TableEmptyRows height={73} emptyRows={Math.max(0, rowsPerPage - (users.length || 0))} />
-              {users.length === 0 && <TableNoData query={''} />}
+              <TableEmptyRows height={73} emptyRows={users.length ? Math.max(0, rowsPerPage - users.length) : 0} />
+              {users.length === 0 && <TableNoData />}
             </TableBody>
           </Table>
         </TableContainer>

@@ -55,3 +55,15 @@ export interface IOnboardingStepUpsert extends Partial<IOnboardingStep> {
   id?: string;
   order: number;
 }
+
+export interface IFeedbackQuery {
+  limit?: number;
+  page?: number;
+}
+
+export interface IFeedback {
+  id: string;
+  value: number;
+  createdAt: string;
+  user: IUser;
+}
