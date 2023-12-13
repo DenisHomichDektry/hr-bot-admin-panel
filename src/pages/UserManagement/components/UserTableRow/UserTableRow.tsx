@@ -9,12 +9,13 @@ interface IUserTableRowProps {
   email: string | null;
   avatarUrl: string | null;
   role: string;
+  position: string | null;
   onDelete: () => void;
   onEdit: () => void;
 }
 
 export const UserTableRow: FC<IUserTableRowProps> = (props) => {
-  const { name, email, avatarUrl, role, onDelete, onEdit } = props;
+  const { name, email, avatarUrl, role, onDelete, onEdit, position } = props;
   const [open, setOpen] = useState<Element | null>(null);
 
   const handleOpenMenu = (event: MouseEvent) => {
@@ -46,11 +47,9 @@ export const UserTableRow: FC<IUserTableRowProps> = (props) => {
             </Typography>
           </Stack>
         </TableCell>
-
         <TableCell>{email}</TableCell>
-
+        <TableCell>{position || '—'}</TableCell>
         <TableCell>{role}</TableCell>
-
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />

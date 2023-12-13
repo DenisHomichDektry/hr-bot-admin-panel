@@ -21,6 +21,7 @@ import { IHeadLabel } from '../../types.ts';
 const headLabel: IHeadLabel[] = [
   { id: 'name', label: 'Name' },
   { id: 'email', label: 'Email' },
+  { id: 'position', label: 'Position' },
   { id: 'role', label: 'Role' },
   { id: '' },
 ];
@@ -98,6 +99,7 @@ export const UserTable: FC = () => {
                   role={row.role.name}
                   avatarUrl={row.imgUrl}
                   email={row.email}
+                  position={row.position}
                   onDelete={() => {
                     setOpenDeleteDialog(true);
                     setCurrentUser(row);

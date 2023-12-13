@@ -12,6 +12,7 @@ const validationSchema = yup.object({
   firstName: yup.string().required('First name is required').max(512, 'First name must be at most 512 characters'),
   lastName: yup.string().required('Last name is required').max(512, 'Last name must be at most 512 characters'),
   email: yup.string().required('Email is required').email('Invalid email format'),
+  position: yup.string().max(512, 'Position must be at most 512 characters'),
   roleId: yup.string().required('Role is required'),
 });
 
@@ -33,6 +34,7 @@ export const EditDialog: FC<IEditDialogProps> = (props) => {
       firstName: user?.firstName || '',
       lastName: user?.lastName || '',
       email: user?.email || '',
+      position: user?.position || '',
       roleId: user?.role.id || '',
     },
     validationSchema: validationSchema,
@@ -53,6 +55,7 @@ export const EditDialog: FC<IEditDialogProps> = (props) => {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email || '',
+          position: user.position || '',
           roleId: user.role.id,
         },
       });
@@ -93,6 +96,12 @@ export const EditDialog: FC<IEditDialogProps> = (props) => {
             {...formik.getFieldProps('email')}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
+          />
+          <TextField
+            label="Position"
+            {...formik.getFieldProps('position')}
+            error={formik.touched.position && Boolean(formik.errors.position)}
+            helperText={formik.touched.position && formik.errors.position}
           />
           <CustomSelect
             label="Role"

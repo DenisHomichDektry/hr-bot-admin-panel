@@ -19,6 +19,7 @@ export interface IUser {
   email: string | null;
   imgUrl: string | null;
   role: IRole;
+  position: string | null;
   createdAt: string;
 }
 
@@ -39,6 +40,7 @@ export interface IUpdateUser {
   lastName?: string;
   roleId?: string;
   email?: string;
+  position?: string;
 }
 
 export interface IOnboardingStep {
